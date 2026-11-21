@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" data-scroll-behavior="smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
+  <meta name="theme-color" content="#14532d" />
+  <title>YuTara | Discover land with confidence</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="login-page">
+    <div class="login-visual">
+      <div class="login-visual-copy">
+        <div class="brand">
+          <img alt="YuTara" width="160" height="48" class="brand-logo brand-logo-large" src="yutara-logo.svg" />
+        </div>
+        <div>
+          <div class="eyebrow">Join YuTara Marketplace</div>
+          <h1 class="display">
+            Register as a<br />
+            <em>land buyer or seller.</em>
+          </h1>
+          <p>
+            Submit your details and valid ID(s) for administrator approval.
+            You will be notified once your account is reviewed.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <section class="login-panel">
+      <a class="login-back" href="login.html">← Back to sign in</a>
+      <div class="login-form-wrap">
+
+        <!-- Submitted Confirmation Box (Hidden until Step 4 submit) -->
+        <div id="reg-submitted-box" class="verification-box" style="display: none;">
+          <h3>Application submitted</h3>
+          <p style="margin: 0;">
+            Your registration has been sent for administrator review. Your
+            account is pending and cannot sign in until an administrator
+            approves it. We will notify you using the contact details you
+            submitted once a decision is made.
+          </p>
+          <p class="muted" style="margin: 12px 0 0; font-size: .8rem;">
+            Keep your email and mobile number available. After approval,
+            return here and sign in with the password you created.
+          </p>
+          <a class="button button-primary" style="margin-top: 16px;" href="login.html">
+            Go to login
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- 4-Step Registration Form -->
+        <form id="registration-form" class="registration-form" onsubmit="handleRegisterSubmit(event)" novalidate>
+          <div
+            id="reg-error"
+            class="verification-box"
+            style="display: none; background: #fdecea; color: #b3261e; border: 1px solid #e57373;"
+          ></div>
+
+          <div class="sell-stepper">
+            <button type="button" id="step-btn-1" class="active" onclick="goToRegStep(1)">
+              <span>1</span>Account
+            </button>
+            <button type="button" id="step-btn-2" class="disabled" disabled onclick="goToRegStep(2)">
+              <span>2</span>Valid ID(s)
+            </button>
+            <button type="button" id="step-btn-3" class="disabled" disabled onclick="goToRegStep(3)">
+              <span>3</span>Face scan
+            </button>
+            <button type="button" id="step-btn-4" class="disabled" disabled onclick="goToRegStep(4)">
+              <span>4</span>Review
+            </button>
+          </div>
+
+          <!-- STEP 1: Account -->
+          <div id="reg-step-1" class="form-grid">
+            <label>
+              Full name
+              <input id="reg-fullname" class="form-input" placeholder="Your full name" required />
+            </label>
+            <label>
+              Mobile number
+              <input id="reg-mobile" class="form-input" placeholder="09XX XXX XXXX" inputmode="numeric" required />
+            </label>
+            <label>
+              Email
+              <input id="reg-email" class="form-input" type="email" placeholder="Enter your email" required />
+            </label>
+            <label>
+              Password
+              <input id="reg-password" class="form-input" type="password" placeholder="Create a password" required />
+            </label>
+            <label>
+              Confirm password
+              <input id="reg-confirm" class="form-input" type="password" placeholder="Confirm your password" required />
+            </label>
+          </div>
+
+          <!-- STEP 2: Valid ID(s) -->
+          <div id="reg-step-2" class="document-list" style="display: none;">
+            <div class="verification-box">
+              <strong id="reg-id-count-label">Valid ID upload (0 of 2 uploaded)</strong>
+              <p style="margin: 6px 0 0; font-size: .8rem;">
+                Upload a clear photo or scan of your valid government ID
+                (driver's license, passport, national ID, etc.). At least one
+                ID is required for registration. A second ID is optional but
+                helps speed up approval.
+              </p>
+              <p class="muted" style="margin: 8px 0 0; font-size: .75rem;">
+                YuTara reviews the submitted documents for this MVP marketplace.
+                This does not replace an official government or legal ownership check.
+              </p>
+              <p style="font-size: .72rem; color: #666; margin-top: 4px;">
+                Max file size: 5MB. Accepted formats: PDF, JPG, JPEG, PNG.
+              </p>
+            </div>
+
+            <div class="document-card">
+              <div>
+                <strong>Valid ID #1</strong>
+                <p>Required for registration</p>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <input id="reg-file-1" type="file" accept=".pdf,.jpg,.jpeg,.png" style="display: none;" onchange="handleRegIdUpload(1, this)" />
+                <span id="reg-file-1-name" style="display: none; color: #d79c43; font-weight: 700;"></span>
+                <button id="reg-file-1-btn" class="button button-primary" type="button" onclick="document.getElementById('reg-file-1').click()">
+                  Upload ID #1
+                </button>
+              </div>
+            </div>
+
+            <div class="document-card">
+              <div>
+                <strong>Valid ID #2</strong>
+                <p>Optional — speeds up approval</p>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <input id="reg-file-2" type="file" accept=".pdf,.jpg,.jpeg,.png" style="display: none;" onchange="handleRegIdUpload(2, this)" />
+                <span id="reg-file-2-name" style="display: none; color: #d79c43; font-weight: 700;"></span>
+                <button id="reg-file-2-btn" class="button button-primary" type="button" onclick="document.getElementById('reg-file-2').click()">
+                  Upload ID #2
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: Face scan -->
+          <div id="reg-step-3" class="face-scan-box" style="display: none;">
+            <div class="face-frame">
+              <svg xmlns="http://www.w3.org/2000/svg" width="62" height="62" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-scan-face">
+                <path d="M3 7V5a2 2 0 0 1 2-2h2"></path>
+                <path d="M17 3h2a2 2 0 0 1 2 2v2"></path>
+                <path d="M21 17v2a2 2 0 0 1-2 2h-2"></path>
+                <path d="M7 21H5a2 2 0 0 1-2-2v-2"></path>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                <path d="M9 9h.01"></path>
+                <path d="M15 9h.01"></path>
+              </svg>
+            </div>
+            <h3 id="face-scan-title">Face Verification</h3>
+            <p>Position your face inside the frame.</p>
+            <p class="muted" style="font-size: .75rem;">
+              Face verification confirms a live person and helps reduce
+              fraudulent accounts. <strong>This is simulated in the MVP and
+              does not perform biometric identity verification.</strong>
+            </p>
+            <button id="face-scan-btn" type="button" class="button button-primary" onclick="runSimulatedFaceScan()">
+              Start Face Scan
+            </button>
+            <span id="face-verified-badge" class="badge badge-verified" style="display: none;">
+              ✓ Verified
+            </span>
+          </div>
+
+          <!-- STEP 4: Review -->
+          <div id="reg-step-4" class="review-panel" style="display: none;">
+            <div class="review-row">
+              <span>Account type</span>
+              <strong>YuTara USER</strong>
+            </div>
+            <div class="review-row">
+              <span>Marketplace access</span>
+              <strong>Buy and sell land</strong>
+            </div>
+            <div class="review-row">
+              <span>Full name</span>
+              <strong id="rev-name">—</strong>
+            </div>
+            <div class="review-row">
+              <span>Mobile number</span>
+              <strong id="rev-mobile">—</strong>
+            </div>
+            <div class="review-row">
+              <span>Email address</span>
+              <strong id="rev-email">—</strong>
+            </div>
+            <div class="review-row">
+              <span>Face verification</span>
+              <strong>Completed</strong>
+            </div>
+            <label class="check-label" style="padding: 15px; background: var(--background);">
+              <input id="reg-consent" type="checkbox" /> I agree to the YuTara terms and privacy notice.
+            </label>
+          </div>
+
+          <div class="registration-actions">
+            <button id="reg-back-btn" type="button" class="button button-ghost" style="display: none;" onclick="prevRegStep()">
+              ← Back
+            </button>
+            <button id="reg-next-btn" type="button" class="button button-primary" onclick="nextRegStep()">
+              Continue
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </button>
+            <button id="reg-submit-btn" type="submit" class="button button-primary" style="display: none;">
+              Submit application →
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

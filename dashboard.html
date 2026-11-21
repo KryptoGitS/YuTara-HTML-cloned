@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-scroll-behavior="smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
+  <meta name="theme-color" content="#14532d" />
+  <title>YuTara | My Properties</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div class="sidebar-shell">
+
+      <!-- Exact Sidebar Navigation (SidebarNav.tsx) -->
+      <aside class="sidebar-holder">
+        <div class="sidebar-content">
+          <div class="sidebar-brand">
+            <div class="brand-flex">
+              <div>
+                <div class="sidebar-brand-name">YuTara</div>
+                <div class="sidebar-brand-slogan">Yuta ba? YuTara!</div>
+              </div>
+            </div>
+          </div>
+
+          <nav class="sidebar-nav" aria-label="Workspace Navigation">
+            <div class="sidebar-group">
+              <div class="sidebar-group-label">Navigation</div>
+              <ul class="sidebar-group-list">
+                <li>
+                  <button class="sidebar-item" onclick="window.location.href='index.html'">
+                    <span class="sidebar-item-label">Home</span>
+                  </button>
+                </li>
+                <li>
+                  <button class="sidebar-item" onclick="window.location.href='marketplace.html'">
+                    <span class="sidebar-item-label">Marketplace</span>
+                  </button>
+                </li>
+                <li>
+                  <button class="sidebar-item sidebar-item-active" onclick="window.location.href='dashboard.html'">
+                    <span class="sidebar-item-label">My Properties</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+          <div class="sidebar-footer">
+            <div class="sidebar-profile">
+              <div class="sidebar-profile-avatar">
+                <span class="sidebar-profile-initials">MS</span>
+              </div>
+              <div class="sidebar-profile-info">
+                <div class="sidebar-profile-name">Maya Santos</div>
+                <div class="sidebar-profile-role">Verified User</div>
+              </div>
+            </div>
+            <button class="sidebar-logout" onclick="window.location.href='index.html'">
+              Log out
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Workspace Area (DashboardPage) -->
+      <main class="app-main">
+        <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">My Properties</div>
+              <h1>Welcome back, Maya Santos!</h1>
+              <p class="muted">
+                Everything about your land in one place: what you reserved,
+                what you are selling, and what you have sold.
+              </p>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <span>Land reserved</span>
+              <strong>1</strong>
+            </div>
+            <div class="stat">
+              <span>Land on sale</span>
+              <strong>2</strong>
+            </div>
+            <div class="stat">
+              <span>Land sold</span>
+              <strong>0</strong>
+            </div>
+          </div>
+
+          <section class="market-section" style="margin-top: 2.5rem;">
+            <div class="market-section-heading">
+              <div>
+                <div class="eyebrow">Seller Workspace</div>
+                <h2>Land on sale</h2>
+              </div>
+            </div>
+
+            <div class="property-grid">
+              <article class="property-card group fade-up">
+                <div class="property-image" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80'); background-position: center;">
+                  <span class="badge badge-green">Open for Offers</span>
+                  <span class="badge badge-gray">Promoted</span>
+                </div>
+                <div class="property-body">
+                  <div class="property-type">Residential lot</div>
+                  <h3 class="property-title">Quiet family lot near the city center</h3>
+                  <div class="property-location">San Vicente, Panabo City</div>
+                  <div class="property-meta" style="display:flex;justify-content:space-between;align-items:flex-end;">
+                    <span class="price">₱2,500,000</span>
+                    <span class="area">200 sqm</span>
+                  </div>
+                  <button class="btn btn-ghost card-action" onclick="window.location.href='property.html?id=1'">
+                    View property →
+                  </button>
+                </div>
+              </article>
+
+              <article class="property-card group fade-up">
+                <div class="property-image" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80'); background-position: center;">
+                  <span class="badge badge-green">Open for Offers</span>
+                </div>
+                <div class="property-body">
+                  <div class="property-type">Residential lot</div>
+                  <h3 class="property-title">Sunlit family parcel 1</h3>
+                  <div class="property-location">Kiotoy, Panabo City</div>
+                  <div class="property-meta" style="display:flex;justify-content:space-between;align-items:flex-end;">
+                    <span class="price">₱2,625,000</span>
+                    <span class="area">225 sqm</span>
+                  </div>
+                  <button class="btn btn-ghost card-action" onclick="window.location.href='property.html?id=21'">
+                    View property →
+                  </button>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </main>
+
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

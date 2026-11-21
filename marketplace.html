@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" data-scroll-behavior="smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
+  <meta name="theme-color" content="#14532d" />
+  <title>YuTara | Discover land with confidence</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- Exact Public Nav -->
+    <nav id="public-nav" class="public-nav public-nav-transparent">
+      <div class="public-nav-inner">
+        <div class="public-nav-left">
+          <button class="public-brand" onclick="window.location.href='index.html'">
+            <img alt="YuTara" width="160" height="48" class="brand-logo brand-logo-large" src="yutara-logo.svg" />
+          </button>
+        </div>
+        <div class="public-nav-center">
+          <a class="public-nav-link" href="index.html">Home</a>
+          <a class="public-nav-link active" href="marketplace.html">Marketplace</a>
+          <a class="public-nav-link" href="about.html">About Us</a>
+          <a class="public-nav-link" href="services.html">Services Offered</a>
+          <a class="public-nav-link" href="contact.html">Contact Us</a>
+        </div>
+        <div class="public-nav-right">
+          <span class="header-auth-links">
+            <a class="header-link home-login-button" href="login.html">Log in</a>
+            <a class="header-link home-register-button" href="register.html">Register</a>
+          </span>
+          <button class="icon-button nav-toggle" aria-label="Toggle Menu" onclick="toggleMobileNav()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu">
+              <path d="M4 5h16"></path>
+              <path d="M4 12h16"></path>
+              <path d="M4 19h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div id="mobile-nav" class="mobile-nav" role="menu" style="display: none;">
+      <a href="index.html">Home</a>
+      <a href="marketplace.html">Marketplace</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services Offered</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="login.html">Log in</a>
+      <a href="register.html">Get started</a>
+    </div>
+
+    <!-- ======================================================================
+         MARKETPLACE VIEW (Exact 1:1 match to MarketplaceView.tsx)
+         ====================================================================== -->
+    <main class="public-marketplace-content">
+      <div class="marketplace-page page">
+        <div class="container">
+
+          <!-- Search Land Trigger Row -->
+          <div class="market-search-trigger-row">
+            <button
+              id="search-land-trigger"
+              class="btn btn-primary"
+              type="button"
+              aria-expanded="false"
+              aria-controls="marketplace-search-panel"
+              onclick="toggleMarketplaceFilterPanel()"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-funnel lucide-filter">
+                <path d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z"></path>
+              </svg>
+              Search Land
+            </button>
+          </div>
+
+          <!-- Collapsible Search & Filter Panel -->
+          <form
+            id="marketplace-search-panel"
+            class="market-search-panel market-search-toolbar"
+            onsubmit="handleMarketplaceSearchSubmit(event)"
+          >
+            <label class="market-search-field">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true">
+                <path d="m21 21-4.34-4.34"></path>
+                <circle cx="11" cy="11" r="8"></circle>
+              </svg>
+              <input
+                id="market-query"
+                type="search"
+                aria-label="Search land by name, location, or type"
+                placeholder="Search land by name, location, or type"
+                oninput="renderMarketplace()"
+              />
+            </label>
+            <button class="btn btn-primary" type="submit">Search</button>
+
+            <div class="filter-group">
+              <label for="marketplace-property-type">Property type</label>
+              <select id="marketplace-property-type" class="input" onchange="renderMarketplace()">
+                <option>All types</option>
+                <option>Residential</option>
+                <option>Agricultural</option>
+                <option>Commercial</option>
+                <option>Industrial</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label for="marketplace-barangay">Barangay</label>
+              <select id="marketplace-barangay" class="input" onchange="renderMarketplace()">
+                <option>All barangays</option>
+                <option>A.O. Floirendo</option>
+                <option>Buenavista</option>
+                <option>Cacao</option>
+                <option>Cagangohan</option>
+                <option>Consolacion</option>
+                <option>Datu Abdul Dadia</option>
+                <option>Gredu</option>
+                <option>J.P. Laurel</option>
+                <option>Kasilak</option>
+                <option>Katipunan</option>
+                <option>Katualan</option>
+                <option>Kauswagan</option>
+                <option>Kiotoy</option>
+                <option>Little Panay</option>
+                <option>Lower Panaga</option>
+                <option>Mabuhay</option>
+                <option>Magsaysay</option>
+                <option>Malativas</option>
+                <option>Manay</option>
+                <option>New Malaga</option>
+                <option>New Malitbog</option>
+                <option>New Pandan</option>
+                <option>Nanyo</option>
+                <option>Pandapan</option>
+                <option>Poblacion</option>
+                <option>Salvacion</option>
+                <option>San Francisco</option>
+                <option>San Nicolas</option>
+                <option>San Pedro</option>
+                <option>San Roque</option>
+                <option>San Vicente</option>
+                <option>Santa Cruz</option>
+                <option>Santo Niño</option>
+                <option>Sindaton</option>
+                <option>Southern Davao</option>
+                <option>Tagpore</option>
+                <option>Tibungol</option>
+                <option>Upper Limon</option>
+                <option>Waterfall</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label for="marketplace-sort">Sort by</label>
+              <select id="marketplace-sort" class="input" onchange="renderMarketplace()">
+                <option>Recommended</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Newest</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label>Price range</label>
+              <div class="range-row">
+                <input
+                  id="market-min-price"
+                  placeholder="Min ₱"
+                  inputmode="numeric"
+                  class="input"
+                  aria-label="Minimum price"
+                  oninput="renderMarketplace()"
+                />
+                <input
+                  id="market-max-price"
+                  placeholder="Max ₱"
+                  inputmode="numeric"
+                  class="input"
+                  aria-label="Maximum price"
+                  oninput="renderMarketplace()"
+                />
+              </div>
+            </div>
+
+            <button class="btn btn-ghost" type="button" onclick="clearMarketplaceFilters()">
+              Clear
+            </button>
+          </form>
+
+          <!-- Marketplace Results Container -->
+          <div class="market-layout">
+            <section class="market-results">
+
+              <!-- Promoted Carousel Section (Visible when no search filter is active) -->
+              <section id="market-promoted-section" class="market-promoted-section">
+                <div class="market-section-heading">
+                  <div>
+                    <div class="eyebrow">YuTara Promoted</div>
+                    <h2>Featured Promoted Lands</h2>
+                  </div>
+                  <p>Seller-promoted properties that remain open for offers.</p>
+                </div>
+                <div id="promoted-carousel-mount"></div>
+              </section>
+
+              <!-- Property Grid Section -->
+              <div class="market-sections">
+                <section class="market-section">
+                  <div class="market-section-heading">
+                    <div>
+                      <div id="market-grid-eyebrow" class="eyebrow">All Listings</div>
+                      <h2 id="market-grid-heading">All land for sale</h2>
+                    </div>
+                  </div>
+                  <div id="marketplace-property-grid" class="property-grid"></div>
+                </section>
+              </div>
+
+              <div class="market-sell-callout">
+                <button class="btn btn-outline" onclick="window.location.href='login.html'">
+                  Have land to list? Sell with YuTara
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </button>
+              </div>
+
+            </section>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

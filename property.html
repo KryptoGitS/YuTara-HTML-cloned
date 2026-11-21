@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-scroll-behavior="smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
+  <meta name="theme-color" content="#14532d" />
+  <title>YuTara | Property Details</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+
+    <header class="topbar">
+      <div class="container nav">
+        <a class="brand" href="index.html">
+          <img alt="YuTara" width="160" height="48" class="brand-logo brand-logo-large" src="yutara-logo.svg" />
+        </a>
+        <nav class="public-site-links" aria-label="Public pages">
+          <a href="index.html">Home</a>
+          <a href="marketplace.html">Marketplace</a>
+          <a href="about.html">About Us</a>
+          <a href="services.html">Services Offered</a>
+          <a href="contact.html">Contact Us</a>
+        </nav>
+        <div class="nav-actions">
+          <span class="nav-auth">
+            <a class="button button-ghost" href="login.html">Log in</a>
+            <a class="button button-primary" href="register.html">Register</a>
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Dynamic Property Detail Mount (Exact 1:1 PropertyDetailView.tsx structure) -->
+    <div id="property-detail-mount"></div>
+
+    <!-- Contact Seller Inquiry Modal -->
+    <div id="inquiry-modal" class="modal-backdrop" role="dialog" aria-modal="true" style="display: none;">
+      <div class="modal">
+        <div class="modal-header">
+          <h2 class="display">Contact Seller</h2>
+          <button class="close-button" onclick="closeInquiryModal()" aria-label="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x">
+              <path d="M18 6 6 18"></path>
+              <path d="m6 6 12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <form onsubmit="submitInquiryModal(event)" class="form-grid">
+          <p class="muted" id="inquiry-property-label">Send a direct inquiry to the property seller.</p>
+          <label>
+            Your Message
+            <textarea id="inquiry-message" class="input textarea" rows="4" required>Hello, I am interested in this property and would like to know more about its availability.</textarea>
+          </label>
+          <div class="modal-foot" style="justify-content: space-between; margin-top: 12px;">
+            <button type="button" class="button button-ghost" onclick="closeInquiryModal()">Cancel</button>
+            <button type="submit" class="button button-primary">Send inquiry</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

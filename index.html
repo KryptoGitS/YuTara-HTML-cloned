@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en" data-scroll-behavior="smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
+  <meta name="theme-color" content="#14532d" />
+  <title>YuTara | Discover land with confidence</title>
+  <meta name="description" content="A trusted Philippine land marketplace for verified discovery and direct connection." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- ======================================================================
+         PUBLIC NAVIGATION BAR (Exact 1:1 match to yutarasandbox.vercel.app)
+         ====================================================================== -->
+    <nav id="public-nav" class="public-nav public-nav-transparent">
+      <div class="public-nav-inner">
+        <div class="public-nav-left">
+          <button class="public-brand" onclick="window.location.href='index.html'">
+            <img alt="YuTara" width="160" height="48" class="brand-logo brand-logo-large" src="yutara-logo.svg" />
+          </button>
+        </div>
+
+        <div class="public-nav-center">
+          <a class="public-nav-link active" href="index.html">Home</a>
+          <a class="public-nav-link" href="marketplace.html">Marketplace</a>
+          <a class="public-nav-link" href="about.html">About Us</a>
+          <a class="public-nav-link" href="services.html">Services Offered</a>
+          <a class="public-nav-link" href="contact.html">Contact Us</a>
+        </div>
+
+        <div class="public-nav-right">
+          <span class="header-auth-links">
+            <a class="header-link home-login-button" href="login.html">Log in</a>
+            <a class="header-link home-register-button" href="register.html">Register</a>
+          </span>
+          <button class="icon-button nav-toggle" aria-label="Toggle Menu" onclick="toggleMobileNav()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu">
+              <path d="M4 5h16"></path>
+              <path d="M4 12h16"></path>
+              <path d="M4 19h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Navigation Menu (Toggled on mobile screens) -->
+    <div id="mobile-nav" class="mobile-nav" role="menu" style="display: none;">
+      <a href="index.html">Home</a>
+      <a href="marketplace.html">Marketplace</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services Offered</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="login.html">Log in</a>
+      <a href="register.html">Get started</a>
+    </div>
+
+    <!-- ======================================================================
+         HERO SECTION
+         ====================================================================== -->
+    <section class="hero-section fade-up hero-transparent">
+      <div
+        class="hero-bg"
+        style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=85');"
+      ></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content hero-content-left">
+        <div class="hero-eyebrow">Your Digital Land Marketplace</div>
+        <h1 class="hero-heading">
+          Your Land. Your Opportunity. Your <em>YuTara.</em>
+        </h1>
+        <p class="hero-subhead">
+          Discover land opportunities, connect with property owners, and take
+          the next step toward a more convenient land transaction experience.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="window.location.href='marketplace.html'">
+            Explore Marketplace
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </button>
+          <button class="btn btn-outline" onclick="document.getElementById('features').scrollIntoView({ behavior: 'smooth' })">
+            Learn More
+          </button>
+        </div>
+        <div class="hero-trust">
+          Agency-assisted land transfer processing • Secure transactions
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SEARCH PREVIEW SECTION
+         ====================================================================== -->
+    <section class="search-preview-section fade-up">
+      <div class="search-preview-container">
+        <div class="search-preview-card">
+          <div class="search-preview-form">
+            <input
+              id="home-search-query"
+              class="search-preview-input"
+              placeholder="Location or barangay"
+              aria-label="Location or barangay"
+              value=""
+            />
+            <select id="home-search-type" class="search-preview-select" aria-label="Property type">
+              <option value="All types">Any property type</option>
+              <option value="Residential">Residential</option>
+              <option value="Agricultural">Agricultural</option>
+              <option value="Commercial">Commercial</option>
+              <option value="Industrial">Industrial</option>
+            </select>
+            <input
+              id="home-search-min"
+              class="search-preview-input"
+              placeholder="Min budget (₱)"
+              inputmode="numeric"
+              value=""
+            />
+            <input
+              id="home-search-max"
+              class="search-preview-input"
+              placeholder="Max budget (₱)"
+              inputmode="numeric"
+              value=""
+            />
+            <button class="search-preview-btn" onclick="submitHomeSearch()">
+              Search Properties
+            </button>
+          </div>
+          <div
+            class="search-preview-image"
+            style="background-image: url('https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80');"
+          ></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         FEATURES SECTION ("WHY YUTARA")
+         ====================================================================== -->
+    <section class="features-section fade-up" id="features">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Why YuTara</div>
+            <h2>Built for trust, transparency, and convenience.</h2>
+            <p>
+              A modern property technology platform designed to make land
+              discovery and transactions simple and secure.
+            </p>
+          </div>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin">
+                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <h3 class="feature-heading">Convenient Property Discovery</h3>
+            <p class="feature-text">
+              Browse verified land listings across Panabo City with detailed
+              property information.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <h3 class="feature-heading">Transparent Buyer-Seller Communication</h3>
+            <p class="feature-text">
+              Connect directly with property owners through secure inquiries and
+              booking requests.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-check-corner lucide-file-check-2">
+                <path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"></path>
+                <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+                <path d="m3 15 2 2 4-4"></path>
+              </svg>
+            </div>
+            <h3 class="feature-heading">Organized Transaction Process</h3>
+            <p class="feature-text">
+              Track your transaction progress from agreement to transfer
+              completion.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-leaf">
+                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+              </svg>
+            </div>
+            <h3 class="feature-heading">Agency-Assisted Transfer Processing</h3>
+            <p class="feature-text">
+              The affiliated agency coordinates document collection and land
+              transfer.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         PROCESS SECTION ("HOW IT WORKS")
+         ====================================================================== -->
+    <section class="process-section fade-up">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">How It Works</div>
+            <h2>From discovery to transfer in four steps.</h2>
+            <p>
+              A simple, guided process that takes you from browsing to land
+              ownership with confidence.
+            </p>
+          </div>
+        </div>
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="process-step-number">1</div>
+            <h3 class="process-step-title">Discover</h3>
+            <p class="process-step-text">
+              Browse land listings and explore property details.
+            </p>
+          </div>
+          <div class="process-step">
+            <div class="process-connector"></div>
+            <div class="process-step-number">2</div>
+            <h3 class="process-step-title">Connect</h3>
+            <p class="process-step-text">
+              Contact the seller and discuss the property.
+            </p>
+          </div>
+          <div class="process-step">
+            <div class="process-connector"></div>
+            <div class="process-step-number">3</div>
+            <h3 class="process-step-title">Agree</h3>
+            <p class="process-step-text">
+              When buyer and seller reach an agreement, initiate the
+              transaction.
+            </p>
+          </div>
+          <div class="process-step">
+            <div class="process-connector"></div>
+            <div class="process-step-number">4</div>
+            <h3 class="process-step-title">Transfer</h3>
+            <p class="process-step-text">
+              Submit documents for the affiliated agency to process the land
+              transfer.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         FEATURED LANDS SECTION (6 Cards matching live site)
+         ====================================================================== -->
+    <section class="featured-lands-section home-featured-lands fade-up" id="featured-lands">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Featured Lands</div>
+            <h2>Discover Opportunities on the Land.</h2>
+            <p>
+              Explore available properties and find the right opportunity for
+              your next investment.
+            </p>
+          </div>
+        </div>
+
+        <div class="featured-grid">
+          <!-- Featured Card 1 -->
+          <div class="featured-land-card fade-up">
+            <div class="featured-image" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80');">
+              <span class="featured-badge">Promoted</span>
+              <button class="featured-save" aria-label="Save property" data-save-id="1" onclick="toggleSaveProperty(1, this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart">
+                  <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="featured-body">
+              <span class="featured-type">Residential lot</span>
+              <h3 class="featured-title">Quiet family lot near the city center</h3>
+              <p class="featured-location">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                San Vicente, Panabo City
+              </p>
+              <div class="featured-meta">
+                <span class="featured-price">₱2,500,000</span>
+                <span class="featured-area">200 sqm</span>
+              </div>
+              <button class="featured-btn" onclick="window.location.href='property.html?id=1'">
+                View Details
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Featured Card 2 -->
+          <div class="featured-land-card fade-up">
+            <div class="featured-image" style="background-image: url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1200&q=80');">
+              <button class="featured-save" aria-label="Save property" data-save-id="2" onclick="toggleSaveProperty(2, this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart">
+                  <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="featured-body">
+              <span class="featured-type">Agricultural lot</span>
+              <h3 class="featured-title">Productive coconut land with road access</h3>
+              <p class="featured-location">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                Cagangohan, Panabo City
+              </p>
+              <div class="featured-meta">
+                <span class="featured-price">₱3,900,000</span>
+                <span class="featured-area">1,800 sqm</span>
+              </div>
+              <button class="featured-btn" onclick="window.location.href='property.html?id=2'">
+                View Details
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Featured Card 3 -->
+          <div class="featured-land-card fade-up">
+            <div class="featured-image" style="background-image: url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80');">
+              <span class="featured-badge">Promoted</span>
+              <button class="featured-save" aria-label="Save property" data-save-id="3" onclick="toggleSaveProperty(3, this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart">
+                  <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="featured-body">
+              <span class="featured-type">Commercial lot</span>
+              <h3 class="featured-title">Corner parcel for a neighborhood shop</h3>
+              <p class="featured-location">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                Gredu, Panabo City
+              </p>
+              <div class="featured-meta">
+                <span class="featured-price">₱5,200,000</span>
+                <span class="featured-area">350 sqm</span>
+              </div>
+              <button class="featured-btn" onclick="window.location.href='property.html?id=3'">
+                View Details
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Featured Card 4 -->
+          <div class="featured-land-card fade-up">
+            <div class="featured-image" style="background-image: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80');">
+              <button class="featured-save" aria-label="Save property" data-save-id="9" onclick="toggleSaveProperty(9, this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart">
+                  <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="featured-body">
+              <span class="featured-type">Commercial lot</span>
+              <h3 class="featured-title">Small office site in a growing district</h3>
+              <p class="featured-location">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                J.P. Laurel, Panabo City
+              </p>
+              <div class="featured-meta">
+                <span class="featured-price">₱8,300,000</span>
+                <span class="featured-area">420 sqm</span>
+              </div>
+              <button class="featured-btn" onclick="window.location.href='property.html?id=9'">
+                View Details
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Featured Card 5 -->
+          <div class="featured-land-card fade-up">
+            <div class="featured-image" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80');">
+              <button class="featured-save" aria-label="Save property" data-save-id="11" onclick="toggleSaveProperty(11, this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart">
+                  <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="featured-body">
+              <span class="featured-type">Residential lot</span>
+              <h3 class="featured-title">Starter lot close to local schools</h3>
+              <p class="featured-location">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                Poblacion, Panabo City
+              </p>
+              <div class="featured-meta">
+                <span class="featured-price">₱1,950,000</span>
+                <span class="featured-area">180 sqm</span>
+              </div>
+              <button class="featured-btn" onclick="window.location.href='property.html?id=11'">
+                View Details
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Featured Card 6 -->
+          <div class="featured-land-card fade-up">
+            <div class="featured-image" style="background-image: url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80');">
+              <span class="featured-badge">Promoted</span>
+              <button class="featured-save" aria-label="Save property" data-save-id="15" onclick="toggleSaveProperty(15, this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart">
+                  <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="featured-body">
+              <span class="featured-type">Residential lot</span>
+              <h3 class="featured-title">Residential lot with open views</h3>
+              <p class="featured-location">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                San Roque, Panabo City
+              </p>
+              <div class="featured-meta">
+                <span class="featured-price">₱2,750,000</span>
+                <span class="featured-area">240 sqm</span>
+              </div>
+              <button class="featured-btn" onclick="window.location.href='property.html?id=15'">
+                View Details
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+          <button class="btn btn-primary" onclick="window.location.href='marketplace.html'">
+            Browse All Properties
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         CTA SECTION
+         ====================================================================== -->
+    <section class="cta-section fade-up">
+      <div class="cta-decoration"></div>
+      <div class="cta-content">
+        <h2 class="cta-heading">Your Next Land Opportunity Starts Here.</h2>
+        <p class="cta-text">
+          Find land opportunities, connect with property owners, and experience
+          a more organized way to transact.
+        </p>
+        <button class="cta-btn" onclick="window.location.href='marketplace.html'">
+          Explore YuTara
+        </button>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         PUBLIC FOOTER
+         ====================================================================== -->
+    <footer class="public-footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-text">YuTara</div>
+          <div class="footer-slogan">Yuta ba? YuTara!</div>
+          <p class="footer-description">
+            A trusted Philippine land marketplace helping people discover land,
+            connect with sellers, and transact with confidence.
+          </p>
+        </div>
+        <div>
+          <div class="footer-heading">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services Offered</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Services</div>
+          <ul class="footer-links">
+            <li><a href="services.html">Digital Land Marketplace</a></li>
+            <li><a href="services.html">Property Discovery</a></li>
+            <li><a href="services.html">Buyer-Seller Connection</a></li>
+            <li><a href="services.html">Digital Reservation</a></li>
+            <li><a href="services.html">Transaction Tracking</a></li>
+            <li><a href="services.html">Agency-Assisted Transfer</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Contact</div>
+          <ul class="footer-links">
+            <li><a href="contact.html">Panabo City, Davao del Norte</a></li>
+            <li><a href="contact.html">support@yutara.com</a></li>
+            <li><a href="contact.html">+63 917 123 4567</a></li>
+          </ul>
+          <div class="footer-social">
+            <a href="index.html">facebook</a>
+            <a href="index.html">twitter</a>
+            <a href="index.html">instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-bottom-text">© 2024 YuTara Marketplace. All rights reserved.</span>
+        <span class="footer-bottom-text">Internal verification does not replace legal or government due diligence.</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
