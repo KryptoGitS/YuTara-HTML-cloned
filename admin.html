@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" data-scroll-behavior="smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
+  <meta name="theme-color" content="#14532d" />
+  <title>YuTara | Admin Workspace</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div class="sidebar-shell">
+
+      <!-- Admin Sidebar Navigation -->
+      <aside class="sidebar-holder">
+        <div class="sidebar-content">
+          <div class="sidebar-brand">
+            <div class="brand-flex">
+              <div>
+                <div class="sidebar-brand-name">YuTara</div>
+                <div class="sidebar-brand-slogan">Admin Workspace</div>
+              </div>
+            </div>
+          </div>
+
+          <nav class="sidebar-nav" aria-label="Admin Navigation">
+            <div class="sidebar-group">
+              <div class="sidebar-group-label">Administration</div>
+              <ul class="sidebar-group-list">
+                <li>
+                  <button class="sidebar-item sidebar-item-active" onclick="document.getElementById('user-registrations').scrollIntoView({behavior:'smooth'})">
+                    <span class="sidebar-item-label">User &amp; Admin Accounts</span>
+                  </button>
+                </li>
+                <li>
+                  <button class="sidebar-item" onclick="document.getElementById('land-listings').scrollIntoView({behavior:'smooth'})">
+                    <span class="sidebar-item-label">Land Listings</span>
+                  </button>
+                </li>
+                <li>
+                  <button class="sidebar-item" onclick="window.location.href='index.html'">
+                    <span class="sidebar-item-label">Public Home</span>
+                  </button>
+                </li>
+                <li>
+                  <button class="sidebar-item" onclick="window.location.href='marketplace.html'">
+                    <span class="sidebar-item-label">View Marketplace</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+          <div class="sidebar-footer">
+            <div class="sidebar-profile">
+              <div class="sidebar-profile-avatar">
+                <span id="admin-avatar-initials" class="sidebar-profile-initials">AD</span>
+              </div>
+              <div class="sidebar-profile-info">
+                <div id="admin-profile-name" class="sidebar-profile-name">YuTara Admin</div>
+                <div id="admin-profile-role" class="sidebar-profile-role">ADMIN</div>
+              </div>
+            </div>
+            <button class="sidebar-logout" onclick="logoutSession()">
+              Log out
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Admin Workspace Main Area -->
+      <main class="app-main">
+        <div class="workspace" style="padding: 2rem 0 3rem;">
+          <div class="container">
+
+            <!-- Guard notice if visitor is not logged in as ADMIN -->
+            <div id="admin-guard-notice" class="verification-box" style="display: none; margin-bottom: 24px;">
+              <h3>Admin Login Required</h3>
+              <p style="margin: 6px 0 14px;">
+                You are not currently signed in as an <strong>Admin</strong>. Sign in with
+                <code>admin@yutara.com</code> (password: <code>12345</code>) or create an Admin account on the Register page.
+              </p>
+              <a href="login.html" class="button button-primary">Go to Log in →</a>
+            </div>
+
+            <div id="admin-content-wrap">
+              <div class="eyebrow">Admin workspace · owner &amp; account support</div>
+              <h1 class="display">Admin Portal</h1>
+
+              <!-- Admin KPI Stats -->
+              <div class="stats" style="margin-top: 16px;">
+                <div class="stat">
+                  <span>Total listings</span>
+                  <strong id="admin-stat-total">0</strong>
+                </div>
+                <div class="stat">
+                  <span>Open for offers</span>
+                  <strong id="admin-stat-open">0</strong>
+                </div>
+                <div class="stat">
+                  <span>Created accounts</span>
+                  <strong id="admin-stat-accounts">0</strong>
+                </div>
+                <div class="stat">
+                  <span>Pending approvals</span>
+                  <strong id="admin-stat-pending">0</strong>
+                </div>
+              </div>
+
+              <!-- Quick Create Account Form (Admin or User) -->
+              <div class="verification-box" style="margin-top: 24px;">
+                <div class="eyebrow">Direct Account Provisioning</div>
+                <h2 class="display" style="margin-bottom: 6px;">Create Admin or User Account</h2>
+                <p class="muted" style="margin: 0 0 14px; font-size: 0.85rem;">
+                  Add a new account directly from the Admin dashboard. Accounts created here are immediately active for login.
+                </p>
+
+                <form onsubmit="handleAdminQuickCreateAccount(event)" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; align-items: end;">
+                  <div>
+                    <label class="label" for="admin-new-role">Account Role</label>
+                    <select id="admin-new-role" class="input">
+                      <option value="USER">User Account (USER)</option>
+                      <option value="ADMIN">Admin Account (ADMIN)</option>
+                      <option value="AGENCY_OFFICER">Agency Officer</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="label" for="admin-new-name">Full Name</label>
+                    <input id="admin-new-name" class="input" type="text" placeholder="e.g. Ana Reyes" required />
+                  </div>
+                  <div>
+                    <label class="label" for="admin-new-email">Email</label>
+                    <input id="admin-new-email" class="input" type="email" placeholder="ana@yutara.com" required />
+                  </div>
+                  <div>
+                    <label class="label" for="admin-new-pass">Password</label>
+                    <input id="admin-new-pass" class="input" type="password" placeholder="Min. 5 chars" required />
+                  </div>
+                  <div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                      + Create Account
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <!-- User & Admin Accounts + Registration Approval Table -->
+              <div id="user-registrations" class="table-wrap" style="margin-top: 26px; scroll-margin-top: 90px;">
+                <div class="section-heading">
+                  <div>
+                    <div class="eyebrow">User &amp; Admin Accounts</div>
+                    <h2 class="display">Manage &amp; approve accounts</h2>
+                  </div>
+                  <p class="muted">
+                    Approve pending registrations, deny applications, or remove custom sandbox accounts.
+                  </p>
+                </div>
+
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Role</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-accounts-tbody"></tbody>
+                </table>
+              </div>
+
+              <!-- Land Listings Moderation Table -->
+              <div id="land-listings" class="table-wrap admin-land-listings" style="margin-top: 26px; scroll-margin-top: 90px;">
+                <div class="section-heading admin-land-listings-heading">
+                  <div>
+                    <div class="eyebrow">Owner support</div>
+                    <h2 class="display">All land listings</h2>
+                  </div>
+                  <button class="button button-danger" onclick="resetSandboxData()">
+                    Reset Sandbox Data
+                  </button>
+                </div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Property</th>
+                      <th>Seller</th>
+                      <th>Category</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-listings-tbody"></tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

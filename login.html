@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
   <meta name="theme-color" content="#14532d" />
-  <title>YuTara | Discover land with confidence</title>
+  <title>YuTara | Log in</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -38,7 +38,7 @@
         </div>
         <div class="eyebrow">Your property search, with context</div>
         <h2 class="display">Log in</h2>
-        <p class="muted">Welcome back to YuTara.</p>
+        <p class="muted">Sign in with an Admin account, User account, or an account you created.</p>
 
         <form onsubmit="handleLoginSubmit(event)" class="form-grid" novalidate>
           <label>
@@ -82,8 +82,49 @@
 
         <p class="login-register">
           Don't have an account?
-          <a href="register.html" class="button-link">Register here</a>
+          <a href="register.html" class="button-link">Create User or Admin account</a>
         </p>
+
+        <!-- Quick-Fill Demo & Custom Accounts Panel -->
+        <div class="verification-box" style="margin-top: 20px;">
+          <div class="eyebrow" style="margin-bottom: 6px;">Quick-Fill Sandbox Accounts</div>
+          <p class="muted" style="font-size: 0.78rem; margin: 0 0 10px 0;">
+            Click any account to fill email &amp; password (default demo password: <code>12345</code>):
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <button
+              type="button"
+              class="btn btn-ghost btn-sm"
+              onclick="quickFillLogin('admin@yutara.com', '12345', 'Admin')"
+            >
+              🛡️ Admin (admin@yutara.com)
+            </button>
+            <button
+              type="button"
+              class="btn btn-ghost btn-sm"
+              onclick="quickFillLogin('buyer@yutara.com', '12345', 'User / Buyer')"
+            >
+              👤 User Buyer (buyer@yutara.com)
+            </button>
+            <button
+              type="button"
+              class="btn btn-ghost btn-sm"
+              onclick="quickFillLogin('seller@yutara.com', '12345', 'User / Seller')"
+            >
+              🏡 User Seller (seller@yutara.com)
+            </button>
+            <button
+              type="button"
+              class="btn btn-ghost btn-sm"
+              onclick="quickFillLogin('agency.officer@yutara.com', '12345', 'Agency Officer')"
+            >
+              🏛️ Agency (agency.officer@yutara.com)
+            </button>
+          </div>
+
+          <!-- Dynamically shows accounts created via register.html or admin.html -->
+          <div id="custom-accounts-mount" style="margin-top: 12px;"></div>
+        </div>
       </div>
     </section>
 

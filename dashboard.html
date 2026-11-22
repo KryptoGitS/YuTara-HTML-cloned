@@ -11,7 +11,7 @@
   <div class="app-shell">
     <div class="sidebar-shell">
 
-      <!-- Exact Sidebar Navigation (SidebarNav.tsx) -->
+      <!-- Exact Sidebar Navigation -->
       <aside class="sidebar-holder">
         <div class="sidebar-content">
           <div class="sidebar-brand">
@@ -42,6 +42,11 @@
                     <span class="sidebar-item-label">My Properties</span>
                   </button>
                 </li>
+                <li id="sidebar-admin-link-item" style="display: none;">
+                  <button class="sidebar-item" onclick="window.location.href='admin.html'">
+                    <span class="sidebar-item-label">Admin Workspace</span>
+                  </button>
+                </li>
               </ul>
             </div>
           </nav>
@@ -49,28 +54,41 @@
           <div class="sidebar-footer">
             <div class="sidebar-profile">
               <div class="sidebar-profile-avatar">
-                <span class="sidebar-profile-initials">MS</span>
+                <span id="dash-avatar-initials" class="sidebar-profile-initials">YU</span>
               </div>
               <div class="sidebar-profile-info">
-                <div class="sidebar-profile-name">Maya Santos</div>
-                <div class="sidebar-profile-role">Verified User</div>
+                <div id="dash-profile-name" class="sidebar-profile-name">Guest User</div>
+                <div id="dash-profile-role" class="sidebar-profile-role">Not signed in</div>
               </div>
             </div>
-            <button class="sidebar-logout" onclick="window.location.href='index.html'">
+            <button class="sidebar-logout" onclick="logoutSession()">
               Log out
             </button>
           </div>
         </div>
       </aside>
 
-      <!-- Main Workspace Area (DashboardPage) -->
+      <!-- Main Workspace Area -->
       <main class="app-main">
         <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+
+          <!-- Notice when not logged in -->
+          <div id="dash-login-prompt" class="verification-box" style="display: none; margin-bottom: 24px;">
+            <h3>Sign in to access your YuTara workspace</h3>
+            <p style="margin: 6px 0 14px;">
+              Log in with a User account, Admin account, or create a new account.
+            </p>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <a href="login.html" class="button button-primary">Log in →</a>
+              <a href="register.html" class="button button-ghost">Create Account</a>
+            </div>
+          </div>
+
           <div class="section-heading">
             <div>
               <div class="eyebrow">My Properties</div>
-              <h1>Welcome back, Maya Santos!</h1>
-              <p class="muted">
+              <h1 id="dash-welcome-heading">Welcome back!</h1>
+              <p id="dash-welcome-sub" class="muted">
                 Everything about your land in one place: what you reserved,
                 what you are selling, and what you have sold.
               </p>
@@ -79,16 +97,16 @@
 
           <div class="stats">
             <div class="stat">
-              <span>Land reserved</span>
-              <strong>1</strong>
+              <span>Saved properties</span>
+              <strong id="dash-stat-saved">0</strong>
             </div>
             <div class="stat">
               <span>Land on sale</span>
               <strong>2</strong>
             </div>
             <div class="stat">
-              <span>Land sold</span>
-              <strong>0</strong>
+              <span>Account role</span>
+              <strong id="dash-stat-role" style="font-size: 1.15rem;">USER</strong>
             </div>
           </div>
 

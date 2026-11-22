@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
   <meta name="theme-color" content="#14532d" />
-  <title>YuTara | Discover land with confidence</title>
+  <title>YuTara | Create Account (User or Admin)</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -17,12 +17,12 @@
         <div>
           <div class="eyebrow">Join YuTara Marketplace</div>
           <h1 class="display">
-            Register as a<br />
-            <em>land buyer or seller.</em>
+            Create your<br />
+            <em>User or Admin account.</em>
           </h1>
           <p>
-            Submit your details and valid ID(s) for administrator approval.
-            You will be notified once your account is reviewed.
+            Choose an account role below (User, Admin, or Agency Officer) and
+            save your credentials locally so you can log in right away.
           </p>
         </div>
       </div>
@@ -32,29 +32,22 @@
       <a class="login-back" href="login.html">← Back to sign in</a>
       <div class="login-form-wrap">
 
-        <!-- Submitted Confirmation Box (Hidden until Step 4 submit) -->
+        <!-- Submitted Confirmation Box -->
         <div id="reg-submitted-box" class="verification-box" style="display: none;">
-          <h3>Application submitted</h3>
-          <p style="margin: 0;">
-            Your registration has been sent for administrator review. Your
-            account is pending and cannot sign in until an administrator
-            approves it. We will notify you using the contact details you
-            submitted once a decision is made.
-          </p>
-          <p class="muted" style="margin: 12px 0 0; font-size: .8rem;">
-            Keep your email and mobile number available. After approval,
-            return here and sign in with the password you created.
-          </p>
-          <a class="button button-primary" style="margin-top: 16px;" href="login.html">
-            Go to login
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
-              <path d="M5 12h14"></path>
-              <path d="m12 5 7 7-7 7"></path>
-            </svg>
-          </a>
+          <h3 id="reg-submitted-title">Account Created!</h3>
+          <p id="reg-submitted-msg" style="margin: 0;"></p>
+          <p id="reg-submitted-sub" class="muted" style="margin: 12px 0 0; font-size: .82rem;"></p>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px;">
+            <a class="button button-primary" href="login.html">
+              Go to login →
+            </a>
+            <button type="button" class="button button-ghost" onclick="window.location.reload()">
+              Create another account
+            </button>
+          </div>
         </div>
 
-        <!-- 4-Step Registration Form -->
+        <!-- 4-Step Account Creation Form -->
         <form id="registration-form" class="registration-form" onsubmit="handleRegisterSubmit(event)" novalidate>
           <div
             id="reg-error"
@@ -77,11 +70,19 @@
             </button>
           </div>
 
-          <!-- STEP 1: Account -->
+          <!-- STEP 1: Account & Role Selection -->
           <div id="reg-step-1" class="form-grid">
             <label>
+              Account Type (Role)
+              <select id="reg-role" class="form-input">
+                <option value="USER">User Account (Buy &amp; Sell Land)</option>
+                <option value="ADMIN">Admin Account (Manage Listings &amp; Approve Users)</option>
+                <option value="AGENCY_OFFICER">Agency Account (Transfer Officer)</option>
+              </select>
+            </label>
+            <label>
               Full name
-              <input id="reg-fullname" class="form-input" placeholder="Your full name" required />
+              <input id="reg-fullname" class="form-input" placeholder="e.g. Juan Dela Cruz" required />
             </label>
             <label>
               Mobile number
@@ -89,15 +90,19 @@
             </label>
             <label>
               Email
-              <input id="reg-email" class="form-input" type="email" placeholder="Enter your email" required />
+              <input id="reg-email" class="form-input" type="email" placeholder="e.g. juan@yutara.com" required />
             </label>
             <label>
-              Password
+              Password (min. 5 characters)
               <input id="reg-password" class="form-input" type="password" placeholder="Create a password" required />
             </label>
             <label>
               Confirm password
               <input id="reg-confirm" class="form-input" type="password" placeholder="Confirm your password" required />
+            </label>
+            <label class="check-label" style="padding: 10px 12px; background: var(--background-green); border: 1px solid var(--green-border); border-radius: var(--radius-sm); font-size: 0.82rem;">
+              <input id="reg-instant-approve" type="checkbox" checked />
+              <strong>Instant Activate (Sandbox Mode)</strong> — Activate immediately so you can log in right away (uncheck to send to Admin Approval Queue).
             </label>
           </div>
 
@@ -106,18 +111,16 @@
             <div class="verification-box">
               <strong id="reg-id-count-label">Valid ID upload (0 of 2 uploaded)</strong>
               <p style="margin: 6px 0 0; font-size: .8rem;">
-                Upload a clear photo or scan of your valid government ID
-                (driver's license, passport, national ID, etc.). At least one
-                ID is required for registration. A second ID is optional but
-                helps speed up approval.
+                Upload a photo/scan of a valid government ID, or click <strong>Use Sample ID</strong> for quick sandbox testing.
               </p>
-              <p class="muted" style="margin: 8px 0 0; font-size: .75rem;">
-                YuTara reviews the submitted documents for this MVP marketplace.
-                This does not replace an official government or legal ownership check.
-              </p>
-              <p style="font-size: .72rem; color: #666; margin-top: 4px;">
-                Max file size: 5MB. Accepted formats: PDF, JPG, JPEG, PNG.
-              </p>
+              <button
+                type="button"
+                class="btn btn-ghost btn-sm"
+                style="margin-top: 10px;"
+                onclick="attachSampleIdForTesting()"
+              >
+                📎 Use Sample ID (Quick Test)
+              </button>
             </div>
 
             <div class="document-card">
@@ -181,11 +184,15 @@
           <div id="reg-step-4" class="review-panel" style="display: none;">
             <div class="review-row">
               <span>Account type</span>
-              <strong>YuTara USER</strong>
+              <strong id="rev-role">YuTara USER</strong>
             </div>
             <div class="review-row">
-              <span>Marketplace access</span>
-              <strong>Buy and sell land</strong>
+              <span>Access level</span>
+              <strong id="rev-access">Buy and sell land</strong>
+            </div>
+            <div class="review-row">
+              <span>Activation mode</span>
+              <strong id="rev-activation">Instant Activate</strong>
             </div>
             <div class="review-row">
               <span>Full name</span>
@@ -204,7 +211,7 @@
               <strong>Completed</strong>
             </div>
             <label class="check-label" style="padding: 15px; background: var(--background);">
-              <input id="reg-consent" type="checkbox" /> I agree to the YuTara terms and privacy notice.
+              <input id="reg-consent" type="checkbox" checked /> I agree to the YuTara terms and privacy notice.
             </label>
           </div>
 
@@ -220,7 +227,7 @@
               </svg>
             </button>
             <button id="reg-submit-btn" type="submit" class="button button-primary" style="display: none;">
-              Submit application →
+              Create Account →
             </button>
           </div>
         </form>
